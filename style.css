@@ -1,0 +1,12 @@
+body{font-family:Arial;background:#667eea;padding:20px}
+.container{max-width:600px;margin:auto}
+.header{text-align:center;color:white;margin-bottom:20px}
+.card{background:white;padding:20px;border-radius:15px}
+.form-group{margin-bottom:15px}
+.form-control{width:100%;padding:10px}
+.btn{width:100%;padding:12px;background:#764ba2;color:white;border:none}
+.loading{display:none;margin-top:15px}
+.results{display:none;margin-top:15px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.item{background:#6c5ce7;color:white;padding:15px;border-radius:10px;text-align:center}
+.rate button{width:48%;margin-top:10px}
