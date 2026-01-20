@@ -1,549 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Fire Sensitivity AI</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            color: #333;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            color: white;
-        }
-
-        .header h1 {
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .device-info {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 15px;
-            border-radius: 15px;
-            margin-top: 20px;
-            font-size: 0.9rem;
-        }
-
-        .main-card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #2c3e50;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e0e6ed;
-            border-radius: 10px;
-            font-size: 1rem;
-            background: rgba(255, 255, 255, 0.9);
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        .btn {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-            margin: 10px 0;
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-            transition: all 0.3s ease;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
-        }
-
-        .loading {
-            text-align: center;
-            padding: 40px;
-            color: #667eea;
-            display: none;
-        }
-
-        .loading-spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #667eea;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .results {
-            display: none;
-            margin-top: 20px;
-        }
-
-        .sensitivity-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        .sensitivity-item {
-            background: linear-gradient(45deg, #6c5ce7, #a29bfe);
-            color: white;
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
-        }
-
-        .sensitivity-value {
-            font-size: 2rem;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .sensitivity-label {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-
-        .tips {
-            background: linear-gradient(45deg, #00b894, #00cec9);
-            color: white;
-            padding: 20px;
-            border-radius: 15px;
-            margin-top: 20px;
-        }
-
-        .tip {
-            margin-bottom: 10px;
-            padding-left: 20px;
-            position: relative;
-        }
-
-        .tip::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            font-weight: bold;
-        }
-
-        .copy-btn {
-            background: linear-gradient(45deg, #00b894, #00cec9);
-            margin-top: 15px;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-
-            .header h1 {
-                font-size: 1.8rem;
-            }
-
-            .main-card {
-                padding: 20px;
-            }
-        }
-
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #00b894;
-            color: white;
-            padding: 15px 25px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            z-index: 1000;
-            font-weight: 600;
-            transform: translateX(100%);
-            transition: transform 0.3s ease;
-        }
-
-        .notification.show {
-            transform: translateX(0);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Fire Sensitivity AI (Gemini)</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🎯 Free Fire Sensitivity AI</h1>
-            <p>AI-powered sensitivity calculator for optimal performance</p>
-            <div id="deviceInfo" class="device-info">
-                <strong>🔍 Analyzing your device...</strong>
-            </div>
-        </div>
+<div class="container">
 
-        <div class="main-card">
-            <div class="form-group">
-                <label for="playStyle">🎮 Your Play Style:</label>
-                <select id="playStyle" class="form-control">
-                    <option value="balanced">Balanced Player</option>
-                    <option value="aggressive">Aggressive Rusher</option>
-                    <option value="sniper">Sniper/Long Range</option>
-                    <option value="beginner">Beginner</option>
-                </select>
-            </div>
+<div class="header">
+<h1>🎯 Free Fire Sensitivity AI</h1>
+<p>Powered by Google Gemini</p>
+<div id="deviceInfo">Device: manual / auto</div>
+</div>
 
-            <div class="form-group">
-                <label for="gyroscope">📱 Gyroscope:</label>
-                <select id="gyroscope" class="form-control">
-                    <option value="enabled">Enabled (Recommended)</option>
-                    <option value="disabled">Disabled</option>
-                </select>
-            </div>
+<div class="card">
 
-            <button class="btn" onclick="generateSensitivity()">
-                🎯 Generate AI Optimized Settings
-            </button>
+<div class="form-group">
+<label>🔑 Gemini API Key</label>
+<input id="apiKey" class="form-control" placeholder="Paste your Gemini API key">
+</div>
 
-            <div id="loading" class="loading">
-                <div class="loading-spinner"></div>
-                <p>AI is analyzing your device and generating optimal settings...</p>
-            </div>
+<div class="form-group">
+<label>📱 Device</label>
+<select id="devicePreset" class="form-control">
+<option value="auto">Auto detect</option>
+<option value="flagship">Flagship</option>
+<option value="high-end">High-end</option>
+<option value="mid-range">Mid-range</option>
+<option value="budget">Budget</option>
+</select>
+</div>
 
-            <div id="results" class="results">
-                <h3>🎯 Your Optimized Settings</h3>
-                <div id="sensitivityGrid" class="sensitivity-grid"></div>
+<div class="form-group">
+<label>🎮 Play style</label>
+<select id="playStyle" class="form-control">
+<option value="balanced">Balanced</option>
+<option value="aggressive">Aggressive</option>
+<option value="sniper">Sniper</option>
+<option value="beginner">Beginner</option>
+</select>
+</div>
 
-                <button class="btn copy-btn" onclick="copySettings()">
-                    📋 Copy Settings to Clipboard
-                </button>
+<button class="btn" onclick="generate()">Generate</button>
 
-                <div id="recommendations" style="margin-top: 20px; padding: 15px; background: rgba(102, 126, 234, 0.1); border-radius: 10px;">
-                </div>
-            </div>
-        </div>
+<div id="loading" class="loading">Gemini AI analyzing...</div>
 
-        <div class="tips">
-            <h3>💡 Pro Tips</h3>
-            <div class="tip">Practice in training mode for 10-15 minutes with new settings</div>
-            <div class="tip">Adjust based on your current mood and hand condition</div>
-            <div class="tip">Lower sensitivity for long-range, higher for close combat</div>
-            <div class="tip">Keep device clean and ensure stable frame rates</div>
-            <div class="tip">Use gyroscope for micro-adjustments and recoil control</div>
-        </div>
-    </div>
+<div id="results" class="results">
+<div id="grid" class="grid"></div>
 
-    <script>
-        // Auto Device Detection
-        class SimpleDeviceDetector {
-            constructor() {
-                this.deviceInfo = this.detectDevice();
-                this.displayDeviceInfo();
-            }
+<div class="rate">
+<button onclick="rate(true)">👍 Good</button>
+<button onclick="rate(false)">👎 Bad</button>
+</div>
+</div>
 
-            detectDevice() {
-                const userAgent = navigator.userAgent;
-                const memory = navigator.deviceMemory || this.estimateMemory();
-                const cores = navigator.hardwareConcurrency || 4;
-                const screen = this.getScreenInfo();
+</div>
+</div>
 
-                return {
-                    memory: memory,
-                    cores: cores,
-                    screen: screen,
-                    deviceType: this.classifyDevice(memory, cores),
-                    brand: this.detectBrand(userAgent),
-                    isMobile: /Android|iPhone|iPad|iPod/i.test(userAgent)
-                };
-            }
-
-            estimateMemory() {
-                const screen = window.screen;
-                const totalPixels = screen.width * screen.height * (window.devicePixelRatio || 1);
-
-                if (totalPixels > 2000000) return 8;
-                if (totalPixels > 1000000) return 4;
-                if (totalPixels > 500000) return 2;
-                return 1;
-            }
-
-            getScreenInfo() {
-                const screen = window.screen;
-                const diagonal = Math.sqrt(Math.pow(screen.width, 2) + Math.pow(screen.height, 2)) / (window.devicePixelRatio || 1);
-
-                return {
-                    width: screen.width,
-                    height: screen.height,
-                    diagonal: diagonal,
-                    refreshRate: this.estimateRefreshRate()
-                };
-            }
-
-            estimateRefreshRate() {
-                if (this.deviceInfo?.memory >= 8) return 120;
-                if (this.deviceInfo?.memory >= 4) return 90;
-                return 60;
-            }
-
-            detectBrand(userAgent) {
-                if (/Samsung/i.test(userAgent)) return 'Samsung';
-                if (/iPhone|iPad/i.test(userAgent)) return 'Apple';
-                if (/Xiaomi|Mi |Redmi/i.test(userAgent)) return 'Xiaomi';
-                if (/OnePlus/i.test(userAgent)) return 'OnePlus';
-                if (/Huawei/i.test(userAgent)) return 'Huawei';
-                if (/Oppo/i.test(userAgent)) return 'Oppo';
-                if (/Vivo/i.test(userAgent)) return 'Vivo';
-                return 'Android';
-            }
-
-            classifyDevice(memory, cores) {
-                if (memory >= 8 && cores >= 8) return 'flagship';
-                if (memory >= 4 && cores >= 6) return 'high-end';
-                if (memory >= 2 && cores >= 4) return 'mid-range';
-                return 'budget';
-            }
-
-            getScreenSize() {
-                if (this.deviceInfo.screen.diagonal < 5.5) return 'small';
-                if (this.deviceInfo.screen.diagonal < 6.2) return 'medium';
-                if (this.deviceInfo.screen.diagonal < 6.8) return 'large';
-                return 'xl';
-            }
-
-            displayDeviceInfo() {
-                const deviceInfoEl = document.getElementById('deviceInfo');
-                const info = this.deviceInfo;
-
-                deviceInfoEl.innerHTML = `
-                    <strong>📱 Device:</strong> ${info.brand} ${info.deviceType.toUpperCase()} | 
-                    <strong>💾 RAM:</strong> ${info.memory}GB | 
-                    <strong>🖥️ Screen:</strong> ${Math.round(info.screen.diagonal * 10) / 10}" | 
-                    <strong>🔄 Refresh:</strong> ${info.screen.refreshRate}Hz
-                `;
-            }
-        }
-
-        // Simple AI Sensitivity Calculator
-        class SimpleSensitivityAI {
-            constructor() {
-                this.baseSettings = {
-                    flagship: { general: 100, red_dot: 90, scope_2x: 85, scope_4x: 70, sniper: 50, free_look: 80 },
-                    'high-end': { general: 95, red_dot: 85, scope_2x: 80, scope_4x: 65, sniper: 45, free_look: 75 },
-                    'mid-range': { general: 90, red_dot: 80, scope_2x: 75, scope_4x: 60, sniper: 40, free_look: 70 },
-                    budget: { general: 85, red_dot: 75, scope_2x: 70, scope_4x: 55, sniper: 35, free_look: 65 }
-                };
-
-                this.playStyleAdjustments = {
-                    aggressive: { general: 10, red_dot: 15, scope_2x: 10, scope_4x: 0, sniper: -10, free_look: 20 },
-                    balanced: { general: 0, red_dot: 0, scope_2x: 0, scope_4x: 0, sniper: 0, free_look: 0 },
-                    sniper: { general: -10, red_dot: -15, scope_2x: -10, scope_4x: 10, sniper: 30, free_look: -20 },
-                    beginner: { general: -20, red_dot: -20, scope_2x: -20, scope_4x: -30, sniper: -40, free_look: -10 }
-                };
-            }
-
-            async calculateSettings(deviceType, playStyle, screenSize, gyroscope) {
-                await this.delay(1500); // Simulate AI processing
-
-                let baseSettings = { ...this.baseSettings[deviceType] };
-                const adjustments = this.playStyleAdjustments[playStyle];
-
-                // Screen size adjustments
-                const screenMultiplier = {
-                    small: 0.95,
-                    medium: 1.0,
-                    large: 1.05,
-                    xl: 1.1
-                }[screenSize];
-
-                // Gyroscope adjustment
-                const gyroMultiplier = gyroscope === 'enabled' ? 0.95 : 1.0;
-
-                const finalSettings = {};
-                for (let [key, value] of Object.entries(baseSettings)) {
-                    let calculated = (value + adjustments[key]) * screenMultiplier * gyroMultiplier;
-
-                    // Convert to 200-scale and clamp
-                    calculated = Math.max(20, Math.min(200, Math.round(calculated * 2)));
-                    finalSettings[key] = calculated;
-                }
-
-                return finalSettings;
-            }
-
-            delay(ms) {
-                return new Promise(resolve => setTimeout(resolve, ms));
-            }
-        }
-
-        // Initialize
-        let deviceDetector;
-        let sensitivityAI;
-
-        document.addEventListener('DOMContentLoaded', function() {
-            deviceDetector = new SimpleDeviceDetector();
-            sensitivityAI = new SimpleSensitivityAI();
-        });
-
-        async function generateSensitivity() {
-            const playStyle = document.getElementById('playStyle').value;
-            const gyroscope = document.getElementById('gyroscope').value;
-
-            const deviceType = deviceDetector.deviceInfo.deviceType;
-            const screenSize = deviceDetector.getScreenSize();
-
-            // Show loading
-            document.getElementById('loading').style.display = 'block';
-            document.getElementById('results').style.display = 'none';
-
-            try {
-                const settings = await sensitivityAI.calculateSettings(
-                    deviceType, playStyle, screenSize, gyroscope
-                );
-
-                displayResults(settings, deviceType, playStyle);
-
-                document.getElementById('loading').style.display = 'none';
-                document.getElementById('results').style.display = 'block';
-
-            } catch (error) {
-                console.error('Error:', error);
-                showNotification('Error generating settings. Please try again.', 'error');
-                document.getElementById('loading').style.display = 'none';
-            }
-        }
-
-        function displayResults(settings, deviceType, playStyle) {
-            const settingsLabels = {
-                general: 'General',
-                red_dot: 'Red Dot',
-                scope_2x: '2X Scope',
-                scope_4x: '4X Scope',
-                sniper: 'Sniper',
-                free_look: 'Free Look'
-            };
-
-            const gridHtml = Object.entries(settings)
-                .filter(([key]) => settingsLabels[key])
-                .map(([key, value]) => `
-                    <div class="sensitivity-item">
-                        <div class="sensitivity-value">${value}</div>
-                        <div class="sensitivity-label">${settingsLabels[key]}</div>
-                    </div>
-                `).join('');
-
-            document.getElementById('sensitivityGrid').innerHTML = gridHtml;
-
-            // Add recommendations
-            const recommendations = document.getElementById('recommendations');
-            recommendations.innerHTML = `
-                <strong>💡 Recommendations:</strong><br>
-                • Device: ${deviceType.toUpperCase()} optimized<br>
-                • Play Style: ${playStyle} focused<br>
-                • Start with these settings and fine-tune based on comfort<br>
-                • Practice in training mode before ranked matches
-            `;
-
-            // Store settings for copying
-            window.currentSettings = { settings, labels: settingsLabels };
-        }
-
-        function copySettings() {
-            if (!window.currentSettings) return;
-
-            const { settings, labels } = window.currentSettings;
-
-            let text = '🎯 Free Fire AI Sensitivity Settings:\n\n';
-
-            Object.entries(settings)
-                .filter(([key]) => labels[key])
-                .forEach(([key, value]) => {
-                    text += `${labels[key]}: ${value}\n`;
-                });
-
-            text += '\n🤖 Generated by Free Fire Sensitivity AI';
-
-            if (navigator.clipboard) {
-                navigator.clipboard.writeText(text).then(() => {
-                    showNotification('Settings copied to clipboard!');
-                });
-            } else {
-                // Fallback for older browsers
-                const textArea = document.createElement('textarea');
-                textArea.value = text;
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textArea);
-                showNotification('Settings copied to clipboard!');
-            }
-        }
-
-        function showNotification(message, type = 'success') {
-            const notification = document.createElement('div');
-            notification.className = 'notification';
-            notification.textContent = message;
-
-            if (type === 'error') {
-                notification.style.background = '#e17055';
-            }
-
-            document.body.appendChild(notification);
-
-            setTimeout(() => {
-                notification.classList.add('show');
-            }, 100);
-
-            setTimeout(() => {
-                notification.classList.remove('show');
-                setTimeout(() => {
-                    document.body.removeChild(notification);
-                }, 300);
-            }, 3000);
-        }
-    </script>
+<script src="script.js"></script>
 </body>
 </html>
